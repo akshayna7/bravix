@@ -133,6 +133,7 @@ export const HeroSection = (): JSX.Element => {
             width: 502px;
             font-size: 35px;
             line-height: 40px;
+            background: #ffffff;
           }
           .hero-about-col {
             position: absolute;
@@ -142,6 +143,7 @@ export const HeroSection = (): JSX.Element => {
             display: flex;
             flex-direction: column;
             gap: 30px;
+            background: #ffffff;
           }
         }
 
@@ -373,6 +375,7 @@ export const HeroSection = (): JSX.Element => {
             fontWeight: 500,
             letterSpacing: "-0.03em",
             margin: 0,
+            background: "#ffffff",
           }}
         >
           <span style={{ color: "#000000" }}>
@@ -386,7 +389,7 @@ export const HeroSection = (): JSX.Element => {
         </p>
 
         {/* About Us column */}
-        <div className="hero-about-col">
+        <div className="hero-about-col" style={{ background: "#ffffff" }}>
           <span
             style={{
               fontFamily: "'Hiragino Sans', sans-serif",
