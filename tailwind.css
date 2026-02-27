@@ -11,6 +11,16 @@
   --neutralswhite: rgba(255, 255, 255, 1);
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+  }
+  body, #app {
+    background: #ffffff !important;
+    color: inherit !important;
+  }
+}
+
 :root {
   --animate-spin: spin 1s linear infinite;
 }
@@ -215,6 +225,10 @@
 @layer base {
   * {
     @apply border-border;
+  }
+
+  html {
+    color-scheme: light only;
   }
 
   body {
