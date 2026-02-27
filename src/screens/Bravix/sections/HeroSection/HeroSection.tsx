@@ -145,6 +145,9 @@ export const HeroSection = (): JSX.Element => {
             gap: 30px;
             background: #ffffff;
           }
+          .hero-bottom {
+            display: contents;
+          }
         }
 
         /* ── MOBILE / TABLET (<1024px): normal flow ── */
@@ -155,8 +158,21 @@ export const HeroSection = (): JSX.Element => {
           .hero-container {
             display: flex;
             flex-direction: column;
+            gap: 0;
+            padding: 0;
+          }
+          .hero-top {
+            display: flex;
+            flex-direction: column;
             gap: 56px;
-            padding: 48px 24px 80px;
+            padding: 48px 24px 40px;
+          }
+          .hero-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding: 40px 24px 80px;
+            background: #ffffff;
           }
           .hero-nav {
             display: flex;
@@ -221,135 +237,180 @@ export const HeroSection = (): JSX.Element => {
       <div className="hero-orb" />
 
       <div className="hero-container">
-        {/* Navbar */}
-        <nav ref={nav.ref as React.Ref<HTMLElement>} className={`hero-nav reveal${nav.inView ? " in-view" : ""}`}>
-          <img
-            style={{ width: "123px", height: "30px", objectFit: "contain" }}
-            alt="Bravix Logo"
-            src="/images/logo.png"
-          />
-          <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "15px" }}>
-            {navigationItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+        {/* Top dark area */}
+        <div className="hero-top">
+          {/* Navbar */}
+          <nav ref={nav.ref as React.Ref<HTMLElement>} className={`hero-nav reveal${nav.inView ? " in-view" : ""}`}>
+            <img
+              style={{ width: "123px", height: "30px", objectFit: "contain" }}
+              alt="Bravix Logo"
+              src="/images/logo.png"
+            />
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "15px" }}>
+              {navigationItems.map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  style={{
+                    fontFamily: "Inter, sans-serif",
+                    fontWeight: 400,
+                    fontSize: "12px",
+                    lineHeight: "15px",
+                    color: "#FFFFFF",
+                    textDecoration: "none",
+                  }}
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </nav>
+
+          {/* Hero text row */}
+          <div ref={text.ref as React.Ref<HTMLDivElement>} className={`hero-text-row reveal${text.inView ? " in-view" : ""}`}>
+            <h1
+              className="hero-h1"
+              style={{
+                fontFamily: "'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif",
+                fontWeight: 500,
+                letterSpacing: "-0.03em",
+                color: "#FFFFFF",
+                margin: 0,
+              }}
+            >
+              Elevate your brand<br />with digital excellence
+            </h1>
+            <p
+              className="hero-subtitle"
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "17px",
+                letterSpacing: "-0.03em",
+                color: "#FFFFFF",
+                margin: 0,
+              }}
+            >
+              Cutting-edge design, innovative technology, and strategic solutions
+              to take your brand to the next level
+            </p>
+          </div>
+
+          {/* Avatars */}
+          <div ref={avatars2.ref as React.Ref<HTMLDivElement>} className={`hero-avatars reveal reveal-delay-2${avatars2.inView ? " in-view" : ""}`}>
+            {avatars.map((avatar, i) => (
+              <div
+                key={i}
                 style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: 400,
-                  fontSize: "12px",
-                  lineHeight: "15px",
-                  color: "#FFFFFF",
-                  textDecoration: "none",
+                  boxSizing: "border-box",
+                  width: "50px",
+                  height: "50px",
+                  borderRadius: "35.7px",
+                  background: "#FFFFFF",
+                  border: "1.43px solid #000000",
+                  overflow: "hidden",
+                  marginLeft: i === 0 ? "0" : "-10px",
+                  position: "relative",
+                  zIndex: i,
                 }}
               >
-                {item}
-              </a>
+                <img
+                  src={avatar.src}
+                  alt={avatar.alt}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
             ))}
           </div>
-        </nav>
+        </div>
 
-        {/* Hero text row */}
-        <div ref={text.ref as React.Ref<HTMLDivElement>} className={`hero-text-row reveal${text.inView ? " in-view" : ""}`}>
-          <h1
-            className="hero-h1"
-            style={{
-              fontFamily: "'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif",
-              fontWeight: 500,
-              letterSpacing: "-0.03em",
-              color: "#FFFFFF",
-              margin: 0,
-            }}
-          >
-            Elevate your brand<br />with digital excellence
-          </h1>
+        {/* Bottom white area */}
+        <div className="hero-bottom">
+          {/* Brand logos */}
+          <div ref={logos.ref as React.Ref<HTMLDivElement>} className={`hero-brand-logos reveal reveal-delay-1${logos.inView ? " in-view" : ""}`}>
+            {brandLogos.map((logo, i) => (
+              <div
+                key={i}
+                className="hero-brand-logo"
+                style={{
+                  background: "#FFFFFF",
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                }}
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* SEE OUR PORTFOLIO + SCROLL NOW row */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <a
+              href="#projects"
+              className="hero-portfolio-link"
+              style={{
+                fontFamily: "'Hiragino Sans', sans-serif",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "21px",
+                letterSpacing: "-0.03em",
+                color: "#000000",
+                textDecoration: "none",
+              }}
+            >
+              SEE OUR PORTFOLIO
+            </a>
+
+            <a
+              href="#projects"
+              className="hero-scroll"
+              style={{ textDecoration: "none" }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Hiragino Sans', sans-serif",
+                  fontWeight: 400,
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  letterSpacing: "-0.03em",
+                  color: "#000000",
+                }}
+              >
+                SCROLL NOW
+              </span>
+              <ArrowDownCircle style={{ width: "35px", height: "35px", color: "#000000" }} strokeWidth={1} />
+            </a>
+          </div>
+
+          {/* About text */}
           <p
-            className="hero-subtitle"
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 400,
-              fontSize: "14px",
-              lineHeight: "17px",
-              letterSpacing: "-0.03em",
-              color: "#FFFFFF",
-              margin: 0,
-            }}
-          >
-            Cutting-edge design, innovative technology, and strategic solutions
-            to take your brand to the next level
-          </p>
-        </div>
-
-        {/* Avatars */}
-        <div ref={avatars2.ref as React.Ref<HTMLDivElement>} className={`hero-avatars reveal reveal-delay-2${avatars2.inView ? " in-view" : ""}`}>
-          {avatars.map((avatar, i) => (
-            <div
-              key={i}
-              style={{
-                boxSizing: "border-box",
-                width: "50px",
-                height: "50px",
-                borderRadius: "35.7px",
-                background: "#FFFFFF",
-                border: "1.43px solid #000000",
-                overflow: "hidden",
-                marginLeft: i === 0 ? "0" : "-10px",
-                position: "relative",
-                zIndex: i,
-              }}
-            >
-              <img
-                src={avatar.src}
-                alt={avatar.alt}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Brand logos */}
-        <div ref={logos.ref as React.Ref<HTMLDivElement>} className={`hero-brand-logos reveal reveal-delay-1${logos.inView ? " in-view" : ""}`}>
-          {brandLogos.map((logo, i) => (
-            <div
-              key={i}
-              className="hero-brand-logo"
-              style={{
-                background: "#FFFFFF",
-                borderRadius: "10px",
-                overflow: "hidden",
-              }}
-            >
-              <img
-                src={logo.src}
-                alt={logo.alt}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* SEE OUR PORTFOLIO + SCROLL NOW row */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <a
-            href="#projects"
-            className="hero-portfolio-link"
+            ref={about.ref as React.Ref<HTMLParagraphElement>}
+            className={`hero-about-text reveal reveal-left${about.inView ? " in-view" : ""}`}
             style={{
               fontFamily: "'Hiragino Sans', sans-serif",
-              fontWeight: 400,
-              fontSize: "14px",
-              lineHeight: "21px",
+              fontWeight: 500,
               letterSpacing: "-0.03em",
-              color: "#000000",
-              textDecoration: "none",
+              margin: 0,
+              background: "#ffffff",
             }}
           >
-            SEE OUR PORTFOLIO
-          </a>
+            <span style={{ color: "#000000" }}>
+              Bravix Marketing Management is a dynamic digital agency based in
+              Dubai —{" "}
+            </span>
+            <span style={{ color: "#8E8E8E" }}>
+              dedicated to driving business growth through innovative and
+              data-driven marketing solutions.
+            </span>
+          </p>
 
-          <a
-            href="#projects"
-            className="hero-scroll"
-            style={{ textDecoration: "none" }}
-          >
+          {/* About Us column */}
+          <div className="hero-about-col" style={{ background: "#ffffff" }}>
             <span
               style={{
                 fontFamily: "'Hiragino Sans', sans-serif",
@@ -360,67 +421,28 @@ export const HeroSection = (): JSX.Element => {
                 color: "#000000",
               }}
             >
-              SCROLL NOW
+              ABOUT US
             </span>
-            <ArrowDownCircle style={{ width: "35px", height: "35px", color: "#000000" }} strokeWidth={1} />
-          </a>
-        </div>
-
-        {/* About text */}
-        <p
-          ref={about.ref as React.Ref<HTMLParagraphElement>}
-          className={`hero-about-text reveal reveal-left${about.inView ? " in-view" : ""}`}
-          style={{
-            fontFamily: "'Hiragino Sans', sans-serif",
-            fontWeight: 500,
-            letterSpacing: "-0.03em",
-            margin: 0,
-            background: "#ffffff",
-          }}
-        >
-          <span style={{ color: "#000000" }}>
-            Bravix Marketing Management is a dynamic digital agency based in
-            Dubai —{" "}
-          </span>
-          <span style={{ color: "#8E8E8E" }}>
-            dedicated to driving business growth through innovative and
-            data-driven marketing solutions.
-          </span>
-        </p>
-
-        {/* About Us column */}
-        <div className="hero-about-col" style={{ background: "#ffffff" }}>
-          <span
-            style={{
-              fontFamily: "'Hiragino Sans', sans-serif",
-              fontWeight: 400,
-              fontSize: "14px",
-              lineHeight: "21px",
-              letterSpacing: "-0.03em",
-              color: "#000000",
-            }}
-          >
-            ABOUT US
-          </span>
-          <p
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 400,
-              fontSize: "14px",
-              lineHeight: "17px",
-              letterSpacing: "-0.03em",
-              color: "#252525",
-              margin: 0,
-            }}
-          >
-            We understand that in today's fast-paced digital landscape,
-            businesses need more than just visibility—they need impact. Our team
-            of strategists, creatives, and analysts collaborates closely with
-            clients to craft bespoke marketing campaigns that deliver measurable
-            results. Whether you're a startup or an established brand, we bring
-            expertise, creativity, and cutting-edge technology to the table,
-            ensuring your business stands out in the competitive digital world.
-          </p>
+            <p
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "17px",
+                letterSpacing: "-0.03em",
+                color: "#252525",
+                margin: 0,
+              }}
+            >
+              We understand that in today's fast-paced digital landscape,
+              businesses need more than just visibility—they need impact. Our team
+              of strategists, creatives, and analysts collaborates closely with
+              clients to craft bespoke marketing campaigns that deliver measurable
+              results. Whether you're a startup or an established brand, we bring
+              expertise, creativity, and cutting-edge technology to the table,
+              ensuring your business stands out in the competitive digital world.
+            </p>
+          </div>
         </div>
       </div>
     </section>
